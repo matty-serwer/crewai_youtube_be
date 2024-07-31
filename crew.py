@@ -12,12 +12,12 @@ class CompanyResearchCrew:
         print(f"Running crew for {self.job_id} with companies: {companies} and positions: {positions}")
 
         # SETUP AGENTS
-        agents = CompanyResearchAgents()
+        agents = CompanyResearchAgents(self.job_id)
         research_manager = agents.research_manager(companies, positions)
         company_research_agent = agents.company_research_agent()
 
         # SETUP TASKS
-        tasks = CompanyResearchTasks()
+        tasks = CompanyResearchTasks(self.job_id)
         company_research_tasks = [
             tasks.company_research(company_research_agent, company, positions) for company in companies
         ]

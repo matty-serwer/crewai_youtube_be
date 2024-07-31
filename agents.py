@@ -1,4 +1,5 @@
 from crewai import Agent
+from crewai_tools import SerperDevTool
 from langchain_openai import ChatOpenAI
 
 from tools.youtube_search_tools import YoutubeVideoSearchTool
@@ -7,6 +8,7 @@ from tools.youtube_search_tools import YoutubeVideoSearchTool
 class CompanyResearchAgents():
     def __init__(self,  company):
         self.youtubeSearchTool = YoutubeVideoSearchTool()
+        self.searchInternetTool = SerperDevTool()
         self.llm = ChatOpenAI(model="gpt-4-turbo-preview")
 
     def research_manager(self, companies: list[str], positions: list[str]) -> Agent:

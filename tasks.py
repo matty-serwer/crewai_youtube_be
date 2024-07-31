@@ -2,7 +2,7 @@ from textwrap import dedent
 from crewai import Task, Agent
 
 from job_manager import append_event
-from models import PositionInfoList
+from models import PositionInfoList, PositionInfo
 
 
 class CompanyResearchTasks():
@@ -11,7 +11,7 @@ class CompanyResearchTasks():
 
     def append_event_callback(self, task_output):
         print(f"Appending event for {self.job_id} with output: {task_output}")
-        append_event(self.job_id, task_output)
+        append_event(self.job_id, task_output.exported_output)
 
 
     def manage_research(self, agent: Agent, companies: list[str], positions: list[str], tasks: list[Task]):
