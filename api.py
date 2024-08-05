@@ -5,10 +5,13 @@ from flask import Flask, jsonify, request, abort
 from uuid import uuid4 as uuid
 from threading import Thread
 
+from flask_cors import CORS
+
 from crew import CompanyResearchCrew
 from job_manager import append_event, jobs_lock, jobs, Event
 
 app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 def kickoff_crew(job_id: str, companies: list[str], positions: [list]):
     print(f"Running crew for {job_id} with companies: {companies} and positions: {positions}")
