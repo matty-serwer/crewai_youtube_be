@@ -1,9 +1,10 @@
-import json
-from datetime import datetime
-
 from flask import Flask, jsonify, request, abort
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from uuid import uuid4 as uuid
 from threading import Thread
+from datetime import datetime
+import json
 
 from flask_cors import CORS
 
@@ -12,6 +13,13 @@ from job_manager import append_event, jobs_lock, jobs, Event
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+# Initialize Limiter
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=["4 per day"]  # Adjust the limit as needed
+)
 
 def kickoff_crew(job_id: str, companies: list[str], positions: [list]):
     print(f"Running crew for {job_id} with companies: {companies} and positions: {positions}")
@@ -37,7 +45,9 @@ def kickoff_crew(job_id: str, companies: list[str], positions: [list]):
             timestamp=datetime.now()
         )
         )
+
 @app.route('/api/crew', methods=['POST'])
+@limiter.limit("4 per day")  # Limit to 4 requests per day per IP
 def run_crew():
     data = request.json
     if not data or 'companies' not in data or 'positions' not in data:
@@ -79,4 +89,4 @@ def get_status(job_id):
     }), 200
 
 if __name__ == '__main__':
-    app.run(debug=True, port=3001)
+    app.run(port=80)

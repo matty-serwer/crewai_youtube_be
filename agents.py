@@ -9,7 +9,7 @@ class CompanyResearchAgents():
     def __init__(self,  company):
         self.youtubeSearchTool = YoutubeVideoSearchTool()
         self.searchInternetTool = SerperDevTool()
-        self.llm = ChatOpenAI(model="gpt-4-turbo-preview")
+        self.llm = ChatOpenAI(model="gpt-4o-mini")
 
     def research_manager(self, companies: list[str], positions: list[str]) -> Agent:
         return Agent(
