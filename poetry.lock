@@ -1083,6 +1083,29 @@ files = [
 Flask = ">=0.9"
 
 [[package]]
+name = "flask-limiter"
+version = "3.8.0"
+description = "Rate limiting for flask applications"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "Flask_Limiter-3.8.0-py3-none-any.whl", hash = "sha256:0ab44f586d8cc349412791711b6cbafe8f86e7b60ad9e8f24f2686009f00900e"},
+    {file = "flask_limiter-3.8.0.tar.gz", hash = "sha256:686f8b4a75404e47b91565a795c70d29f69c145f6907f1f32522e962b134dada"},
+]
+
+[package.dependencies]
+Flask = ">=2"
+limits = ">=3.13"
+ordered-set = ">4,<5"
+rich = ">=12,<14"
+typing-extensions = ">=4"
+
+[package.extras]
+memcached = ["limits[memcached]"]
+mongodb = ["limits[mongodb]"]
+redis = ["limits[redis]"]
+
+[[package]]
 name = "flatbuffers"
 version = "24.3.25"
 description = "The FlatBuffers serialization format for Python"
@@ -2235,6 +2258,35 @@ pydantic = {version = ">=1,<3", markers = "python_full_version < \"3.12.4\""}
 requests = ">=2,<3"
 
 [[package]]
+name = "limits"
+version = "3.13.0"
+description = "Rate limiting utilities"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "limits-3.13.0-py3-none-any.whl", hash = "sha256:9767f7233da4255e9904b79908a728e8ec0984c0b086058b4cbbd309aea553f6"},
+    {file = "limits-3.13.0.tar.gz", hash = "sha256:6571b0c567bfa175a35fed9f8a954c0c92f1c3200804282f1b8f1de4ad98a953"},
+]
+
+[package.dependencies]
+deprecated = ">=1.2"
+importlib-resources = ">=1.3"
+packaging = ">=21,<25"
+typing-extensions = "*"
+
+[package.extras]
+all = ["aetcd", "coredis (>=3.4.0,<5)", "emcache (>=0.6.1)", "emcache (>=1)", "etcd3", "motor (>=3,<4)", "pymemcache (>3,<5.0.0)", "pymongo (>4.1,<5)", "redis (>3,!=4.5.2,!=4.5.3,<6.0.0)", "redis (>=4.2.0,!=4.5.2,!=4.5.3)"]
+async-etcd = ["aetcd"]
+async-memcached = ["emcache (>=0.6.1)", "emcache (>=1)"]
+async-mongodb = ["motor (>=3,<4)"]
+async-redis = ["coredis (>=3.4.0,<5)"]
+etcd = ["etcd3"]
+memcached = ["pymemcache (>3,<5.0.0)"]
+mongodb = ["pymongo (>4.1,<5)"]
+redis = ["redis (>3,!=4.5.2,!=4.5.3,<6.0.0)"]
+rediscluster = ["redis (>=4.2.0,!=4.5.2,!=4.5.3)"]
+
+[[package]]
 name = "load-dotenv"
 version = "0.1.0"
 description = "Automatically and implicitly load environment variables from .env file"
@@ -2949,6 +3001,20 @@ files = [
     {file = "opentelemetry_util_http-0.46b0-py3-none-any.whl", hash = "sha256:8dc1949ce63caef08db84ae977fdc1848fe6dc38e6bbaad0ae3e6ecd0d451629"},
     {file = "opentelemetry_util_http-0.46b0.tar.gz", hash = "sha256:03b6e222642f9c7eae58d9132343e045b50aca9761fcb53709bd2b663571fdf6"},
 ]
+
+[[package]]
+name = "ordered-set"
+version = "4.1.0"
+description = "An OrderedSet is a custom MutableSet that remembers its order, so that every"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "ordered-set-4.1.0.tar.gz", hash = "sha256:694a8e44c87657c59292ede72891eb91d34131f6531463aab3009191c77364a8"},
+    {file = "ordered_set-4.1.0-py3-none-any.whl", hash = "sha256:046e1132c71fcf3330438a539928932caf51ddbc582496833e23de611de14562"},
+]
+
+[package.extras]
+dev = ["black", "mypy", "pytest"]
 
 [[package]]
 name = "orjson"
@@ -5064,4 +5130,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10.0,<3.12"
-content-hash = "19a97d6f4aa8d9337652828aeb3a801f7920df99483df6135d4bbf211a9b197e"
+content-hash = "fcb703d226fb983c69fe06fd3f78c3ab9225bd48242a240c52c46bd33be854ce"
