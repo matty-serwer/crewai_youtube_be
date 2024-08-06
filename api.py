@@ -89,4 +89,4 @@ def get_status(job_id):
     }), 200
 
 if __name__ == '__main__':
-    app.run(port=80)
+    app.run()
